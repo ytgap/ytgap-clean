@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 // @ts-ignore
 const googleTrends = require('google-trends-api');
 
+
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY!;
 
 async function getSearchVolume(term: string): Promise<number> {
