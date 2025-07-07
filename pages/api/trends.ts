@@ -49,14 +49,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const trends = await Promise.all(
     keywords.map(async (termRaw) => {
-  const term = typeof termRaw === 'string' ? termRaw : (Array.isArray(termRaw) ? termRaw[0] : '');
-  const [videoCount, dailySearches] = await Promise.all([
-    getYouTubeVideoCount(term),
-    getSearchVolume(term),
-  ]);
-  return {
-    term,
-    videoCount,
-    dailySearches,
-  };
-});
+      const term = typeof termRaw === 'string' ? termRaw : (Array.isArray(termRaw) ? termRaw[0] : '');
+      const [videoCount, dailySearches] = await Promise.all([
+        getYouTubeVideoCount(term),
+        getSearchVolume(term),
+      ]);
+      return {
+        term,
+        videoCount,
+        dailySearches,
+      };
+    })
+  );
+
+  res.status(200).json(trends);
+}
