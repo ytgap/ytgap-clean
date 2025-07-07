@@ -60,4 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         dailySearches,
       };
     })
-  )
+  );
+
+  res.status(200).json(trends);
+}
