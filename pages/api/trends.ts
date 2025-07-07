@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import googleTrends from 'google-trends-api';
+// @ts-ignore
+const googleTrends = require('google-trends-api');
 
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY!;
 
