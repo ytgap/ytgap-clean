@@ -44,12 +44,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const niche = Array.isArray(req.query.niche) ? req.query.niche[0] : (req.query.niche || '');
-  const keywords = niche
+  const keywords: string[] = niche
     ? [niche, `${niche} tutorial`, `${niche} tips`, `${niche} beginner`, `${niche} secrets`]
     : ['YouTube Automation', 'AI Music', 'Unboxing', 'Viral Shorts', 'Gaming News'];
 
   const trends = await Promise.all(
-    keywords.map(async (term) => {
+    keywords.map(async (termRaw) => {
+      const term = typeof termRaw === "string" ? termRaw : (termRaw[0] ?? "");
       const [videoCount, dailySearches] = await Promise.all([
         getYouTubeVideoCount(term),
         getSearchVolume(term),
