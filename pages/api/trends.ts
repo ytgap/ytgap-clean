@@ -50,19 +50,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     : ['YouTube Automation', 'AI Music', 'Unboxing', 'Viral Shorts', 'Gaming News'];
 
   const trends = await Promise.all(
-    keywords.map(async (termRaw) => {
-      const term = typeof termRaw === 'string' ? termRaw : (Array.isArray(termRaw) ? termRaw[0] : '');
-      const [videoCount, dailySearches] = await Promise.all([
-        getYouTubeVideoCount(term),
-        getSearchVolume(term),
-      ]);
-      return {
-        term,
-        videoCount,
-        dailySearches,
-      };
-    })
-  );
+  keywords.map(async (termRaw) => {
+    const term: string = typeof termRaw === 'string' ? termRaw : (Array.isArray(termRaw) ? termRaw[0] : '');
+    const [videoCount, dailySearches] = await Promise.all([
+      getYouTubeVideoCount(term as string),
+      getSearchVolume(term as string),
+    ]);
+    return {
+      term,
+      videoCount,
+      dailySearches,
+    };
+  })
+);
 
   res.status(200).json(trends);
 }
