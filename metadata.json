@@ -1,0 +1,5 @@
+{
+  "name": "YTGAP",
+  "description": "Find untapped content gaps on YouTube. YTGAP analyzes trends to find high-demand, low-competition topics, then uses AI to brainstorm video ideas and outlines for you.",
+  "requestFramePermissions": []
+}
