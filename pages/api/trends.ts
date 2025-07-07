@@ -44,7 +44,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const niche = Array.isArray(req.query.niche) ? req.query.niche[0] : (req.query.niche || '');
-
   const keywords = niche
     ? [niche, `${niche} tutorial`, `${niche} tips`, `${niche} beginner`, `${niche} secrets`]
     : ['YouTube Automation', 'AI Music', 'Unboxing', 'Viral Shorts', 'Gaming News'];
